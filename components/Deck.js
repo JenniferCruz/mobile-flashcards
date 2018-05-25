@@ -7,7 +7,7 @@ class Deck extends Component {
 
 
   render() {
-    const deck = this.props.deck;
+    const deck = this.props.navigation.state.params.deck;
 
     return (
       <View>
