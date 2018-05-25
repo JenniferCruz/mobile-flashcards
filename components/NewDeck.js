@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, TouchableHighlight } from 'react-native'
-import { addDeck } from '../utils/helpers'
+import { addDeck } from '../utils/api'
+import { NavigationActions } from 'react-navigation'
 
 class NewDeck extends Component {
   state = {
@@ -11,7 +12,16 @@ class NewDeck extends Component {
     // TODO: save new deck
     addDeck(this.state.title);
     this.setState({title:""});
-    // TODO: redirect user to main view
+    this.goHome();
+  }
+
+  goHome() {
+    this.props.navigation.dispatch(NavigationActions.navigate({
+      routeName: 'Home',
+      // params: {},
+      action: NavigationActions.navigate({ routeName: 'Decks' }),
+    })
+    )
   }
 
   render() {

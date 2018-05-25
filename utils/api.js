@@ -30,3 +30,9 @@ export function getDecks() {
   //debugger;
   return _decks;
 }
+
+export function addDeck( title ) {
+  const newDeck = {title, questions:[]};
+  _decks[title] = newDeck;
+  console.log("updated decks (not really):", _decks);
+}

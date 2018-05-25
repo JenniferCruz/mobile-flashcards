@@ -7,7 +7,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 import DeckList from './components/DeckList'
 import Deck from './components/Deck'
 import Quiz from './components/Quiz'
-import NewDeck from './components/NewCard'
+import NewDeck from './components/NewDeck'
 import NewCard from './components/NewCard'
 import reducer from './reducers'
 import { purple, green, blue, white } from './utils/colors'
