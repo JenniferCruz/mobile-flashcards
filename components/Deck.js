@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { View, Text, TouchableHighlight } from 'react-native'
 import { getDecks, getCardsNumberText } from '../utils/helpers'
 import DeckSnippet from './DeckSnippet'
+import { NavigationActions } from 'react-navigation'
 
 class Deck extends Component {
 
-
   render() {
     const deck = this.props.navigation.state.params.deck;
+    const navigate = this.props.navigation.navigate;
 
     return (
       <View>
@@ -15,10 +16,10 @@ class Deck extends Component {
         <Text>
           {getCardsNumberText(deck.questions)}
         </Text>
-        <TouchableHighlight onPress={()=>{}} underlayColor='#d4271b'>
+        <TouchableHighlight onPress={()=>navigate('TakeQuiz', { deck })} underlayColor='#d4271b'>
           <Text>Start Quiz</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={()=>{}} underlayColor='#d4271b'>
+        <TouchableHighlight onPress={()=>navigate('AddCard', { deck })} underlayColor='#d4271b'>
           <Text>Add Card</Text>
         </TouchableHighlight>
       </View>
