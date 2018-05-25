@@ -36,3 +36,9 @@ export function addDeck( title ) {
   _decks[title] = newDeck;
   console.log("updated decks (not really):", _decks);
 }
+
+export function addCard( card, deckTitle ) {
+  _decks[deckTitle].questions.push(card);
+  // debugger;
+  console.log("added card to deck (not really):", _decks[deckTitle]);
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, TouchableHighlight } from 'react-native'
-import { addCard } from '../utils/helpers'
+import { NavigationActions } from 'react-navigation'
+import { addCard } from '../utils/api'
 
 class NewCard extends Component {
   state = {
@@ -10,10 +11,13 @@ class NewCard extends Component {
 
   saveCard() {
     // TODO: save new card
-    addCard(this.state, this.props.deck);
+    addCard(this.state, this.props.navigation.state.params.deck.title);
     this.setState({question: "", answer: ""});
-    // TODO: redirect user to main view
+    this.goBack();
+  }
 
+  goBack() {
+    this.props.navigation.dispatch(NavigationActions.back());
   }
 
   render() {
