@@ -1,20 +1,14 @@
-import * as API from '../utils/api'
-
 export const LOAD_DECKS = 'LOAD_DECKS';
 export const ADD_DECK = 'ADD_DECK';
 export const ADD_CARD = 'ADD_CARD';
 
-function loadDecks(decks) {
+export function loadDecks(decks) {
+  debugger;
+  console.log("!!loading decks", decks)
   return {
     type: LOAD_DECKS,
     decks
   }
-}
-
-export function getDecks() {
-  //debugger;
-  const decks = API.getDecks();
-  return loadDecks(decks)
 }
 
 export function addDeck( title ) {
@@ -31,11 +25,3 @@ export function addCard( card, deckTitle ) {
     deckTitle
   }
 }
-
-// export const getDecks =
-// () => dispatch =>
-//   API.getDecks()
-//     .then(decks => {
-//       debugger;
-//       dispatch(loadDecks(decks))
-//     })

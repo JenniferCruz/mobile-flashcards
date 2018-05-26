@@ -1,6 +1,3 @@
-import { AsyncStorage } from 'react-native'
-
-const DECKS_STORAGE_KEY = 'mobile-flashcards:decks';
 const _decks = {
   React: {
     title: 'React',
@@ -26,19 +23,4 @@ const _decks = {
   }
 };
 
-export function getDecks() {
-  //debugger;
-  return _decks;
-}
-
-export function addDeck( title ) {
-  const newDeck = {title, questions:[]};
-  _decks[title] = newDeck;
-  console.log("updated decks (not really):", _decks);
-}
-
-export function addCard( card, deckTitle ) {
-  _decks[deckTitle].questions.push(card);
-  // debugger;
-  console.log("added card to deck (not really):", _decks[deckTitle]);
-}
+export default _decks;

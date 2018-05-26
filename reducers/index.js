@@ -3,11 +3,13 @@ import { LOAD_DECKS, ADD_DECK, ADD_CARD } from '../actions'
 export default function decks(state = {decks: {}}, action) {
   switch (action.type) {
     case LOAD_DECKS:
-      // debugger;
-      return {
+      debugger;
+      console.log("!REDUCING>>>", action)
+      const a= {
         ...state,
         decks: action.decks
       };
+      return a;
     case ADD_DECK:
       return {
         ...state,

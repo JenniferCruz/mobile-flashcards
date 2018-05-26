@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import DeckList from './components/DeckList'
 import Deck from './components/Deck'
@@ -12,9 +11,13 @@ import NewCard from './components/NewCard'
 import reducer from './reducers'
 import { purple, green, blue, white } from './utils/colors'
 import { Constants } from 'expo'
+import storage from './utils/storage'
+import { AsyncStorage } from 'react-native';
+import * as ACTIONS from './actions/index'
+import DummyData from './utils/defaultData'
 
 const store = createStore(reducer, compose(
-  applyMiddleware(thunk)
+  applyMiddleware(storage)
 ));
 
 const Tabs = TabNavigator({
@@ -66,6 +69,13 @@ function UdaciStatusBar ({backgroundColor, ...props}) {
     </View>
   )
 }
+
+AsyncStorage.getItem('mobile-flashcards').then(data => {
+  if ( data === null )
+    store.dispatch(ACTIONS.loadDecks( DummyData ));
+  else
+    store.dispatch(ACTIONS.loadDecks(JSON.parse( data )));
+});
 
 export default class App extends React.Component {
 
