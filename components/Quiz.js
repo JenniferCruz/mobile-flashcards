@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, TouchableHighlight } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { getRandomOrder } from '../utils/helpers'
-//import FlashCard from './FlashCard'
+import FlashCard from './FlashCard'
 
 class Quiz extends Component {
 
@@ -55,7 +55,7 @@ class Quiz extends Component {
   }
 
   render() {
-    const questions = [{question: "1", answer:"A"}];//this.props.navigation.state.params.deck.questions;
+    const questions = this.props.navigation.state.params.deck.questions;
     let { current, isCompleted } = this.state;
 
     return isCompleted ? (
@@ -75,7 +75,7 @@ class Quiz extends Component {
         <Text>
           {`${this.state.current + 1}/${this.state.max}`}
         </Text>
-        {/*<FlashCard quiz={questions[current]}/>*/}
+        <FlashCard quiz={questions[current]}/>
         <TouchableHighlight onPress={() => this.saveAnswer(true)} underlayColor='#FFC300'>
           <Text>Correct</Text>
         </TouchableHighlight>
