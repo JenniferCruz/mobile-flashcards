@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, Text, TouchableHighlight } from 'react-native'
 import { getDecks, getCardsNumberText } from '../utils/helpers'
 import DeckSnippet from './DeckSnippet'
@@ -7,9 +8,10 @@ import { NavigationActions } from 'react-navigation'
 class Deck extends Component {
 
   render() {
-    const deck = this.props.navigation.state.params.deck;
+    const key = this.props.navigation.state.params.deck.title;
+    const deck = this.props.decks[key];
     const navigate = this.props.navigation.navigate;
-    // TODO: connect component
+    
     return (
       <View>
         <Text>{deck.title}</Text>
@@ -27,4 +29,10 @@ class Deck extends Component {
   }
 }
 
-export default Deck;
+function mapStateToProps (state) {
+  return state;
+}
+
+export default connect(
+  mapStateToProps
+)(Deck)
