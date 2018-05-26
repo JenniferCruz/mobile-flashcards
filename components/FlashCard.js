@@ -15,9 +15,13 @@ class FlashCard extends Component {
     this.setState({hideAnswer: false})
   }
 
+  static getDerivedStateFromProps(props, state) {
+    return {hideAnswer: true}
+  }
+
   render() {
     const { question, answer } = this.props.quiz;
-    // TODO: with every 'next', the flashcard hideAnswer must be set to true
+
     return this.state.hideAnswer ? (
       <View>
         <Text>{question}</Text>
