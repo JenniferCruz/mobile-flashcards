@@ -9,7 +9,7 @@ class Deck extends Component {
   render() {
     const deck = this.props.navigation.state.params.deck;
     const navigate = this.props.navigation.navigate;
-
+    // TODO: connect component
     return (
       <View>
         <Text>{deck.title}</Text>

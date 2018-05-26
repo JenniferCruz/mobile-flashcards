@@ -8,13 +8,6 @@ import * as ACTIONS from '../actions'
 
 class DeckList extends Component {
 
-    componentDidMount() {
-      //  debugger;
-      this.props.dispatch(
-        ACTIONS.getDecks()
-      );
-    }
-
   render() {
     const decks = this.props.decks;
     // debugger;
@@ -38,7 +31,7 @@ class DeckList extends Component {
 }
 
 function mapStateToProps (state) {
-  return state
+  return {decks: Object.keys(state.decks).map(k => state.decks[k])}
 }
 
 export default connect(

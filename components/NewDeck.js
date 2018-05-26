@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, Text, TextInput, TouchableHighlight } from 'react-native'
-import { addDeck } from '../utils/api'
 import { NavigationActions } from 'react-navigation'
+import * as ACTIONS from '../actions'
 
 class NewDeck extends Component {
   state = {
@@ -9,8 +10,7 @@ class NewDeck extends Component {
   }
 
   saveDeck( ) {
-    // TODO: save new deck
-    addDeck(this.state.title);
+    this.props.dispatch(ACTIONS.addDeck(this.state.title));
     this.setState({title:""});
     this.goHome();
   }
@@ -42,4 +42,5 @@ class NewDeck extends Component {
   }
 }
 
-export default NewDeck;
+
+export default connect()(NewDeck)

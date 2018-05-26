@@ -17,6 +17,21 @@ export function getDecks() {
   return loadDecks(decks)
 }
 
+export function addDeck( title ) {
+  return {
+    type: ADD_DECK,
+    title
+  }
+}
+
+export function addCard( card, deckTitle ) {
+  return {
+    type: ADD_CARD,
+    card,
+    deckTitle
+  }
+}
+
 // export const getDecks =
 // () => dispatch =>
 //   API.getDecks()
