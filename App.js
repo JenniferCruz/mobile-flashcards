@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StatusBar, AsyncStorage } from 'react-native';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
-import { TabNavigator, StackNavigator, createMaterialTopTabNavigator } from 'react-navigation';
+import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 import { Constants } from 'expo'
 import DeckList from './components/DeckList'
 import Deck from './components/Deck'
@@ -28,7 +28,7 @@ const Tabs = createMaterialTopTabNavigator({
   },
 });
 
-const Navigator = StackNavigator({
+const Navigator = createStackNavigator({
   Home: {
     screen: Tabs,
   },
