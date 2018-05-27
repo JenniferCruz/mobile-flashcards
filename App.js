@@ -10,7 +10,7 @@ import Quiz from './components/Quiz'
 import NewDeck from './components/NewDeck'
 import NewCard from './components/NewCard'
 import reducer from './reducers'
-import { metal, blueGreen, rose, white, darkGreen } from './utils/colors'
+import { metal, blueGreen } from './utils/colors'
 import storage from './utils/storage'
 import * as ACTIONS from './actions/index'
 import DummyData from './utils/defaultData'
@@ -95,7 +95,7 @@ export default class App extends React.Component {
   componentDidMount() {
     setLocalNotification()
   }
-  
+
   render() {
     return (
       <Provider store={store}>

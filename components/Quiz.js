@@ -3,7 +3,7 @@ import { Text, View, TouchableHighlight, StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { getRandomOrder } from '../utils/helpers'
 import FlashCard from './FlashCard'
-import { orange, white, metal, rose, middleBlueGreen } from '../utils/colors'
+import { white, metal, rose, middleBlueGreen } from '../utils/colors'
 import { clearLocalNotification, setLocalNotification } from '../utils/notifications'
 
 class Quiz extends Component {
@@ -68,7 +68,7 @@ class Quiz extends Component {
             {"You don't have any cards yet!"}
           </Text>
           <TouchableHighlight
-            style={[styles.btn, styles.roseBackgr]} underlayColor='#FFC300'
+            style={[styles.btn, styles.roseBackgr]} underlayColor={metal}
             onPress={this.goBack.bind(this)}>
               <Text style={styles.btnText}>Back to deck</Text>
           </TouchableHighlight>
@@ -87,12 +87,12 @@ class Quiz extends Component {
         </View>
         <View style={{paddingBottom: 100, alignSelf: 'center'}}>
           <TouchableHighlight
-            style={[styles.btn, styles.bluegreenBackgr]} underlayColor='#FFC300'
+            style={[styles.btn, styles.bluegreenBackgr]} underlayColor={metal}
             onPress={this.restart.bind(this)}>
               <Text style={styles.btnText}>Restart quiz</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            style={[styles.btn, styles.roseBackgr]} underlayColor='#FFC300'
+            style={[styles.btn, styles.roseBackgr]} underlayColor={metal}
             onPress={this.goBack.bind(this)}>
               <Text style={styles.btnText}>Back to deck</Text>
           </TouchableHighlight>
@@ -106,12 +106,12 @@ class Quiz extends Component {
         <FlashCard quiz={questions[current]} />
         <View style={{paddingBottom: 100, alignSelf: 'center'}}>
           <TouchableHighlight
-            style={[styles.btn, styles.bluegreenBackgr]} underlayColor='#FFC300'
+            style={[styles.btn, styles.bluegreenBackgr]} underlayColor={metal}
             onPress={() => this.saveAnswer(true)}>
               <Text style={styles.btnText}>Correct</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            style={[styles.btn, styles.roseBackgr]} underlayColor='#FFC300'
+            style={[styles.btn, styles.roseBackgr]} underlayColor={metal}
             onPress={() => this.saveAnswer(false)}>
               <Text style={styles.btnText}>Incorrect</Text>
           </TouchableHighlight>

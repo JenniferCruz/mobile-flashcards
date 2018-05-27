@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableHighlight, StyleSheet } from 'react-native'
-import { orange, white, metal, rose, prune, powder } from '../utils/colors'
+import { metal, prune, powder } from '../utils/colors'
 
 class FlashCard extends Component {
 

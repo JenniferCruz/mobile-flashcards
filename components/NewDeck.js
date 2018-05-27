@@ -19,7 +19,6 @@ class NewDeck extends Component {
   goHome() {
     this.props.navigation.dispatch(NavigationActions.navigate({
       routeName: 'Home',
-      // params: {},
       action: NavigationActions.navigate({ routeName: 'Decks' }),
     })
     )
@@ -36,7 +35,7 @@ class NewDeck extends Component {
           placeholder="Deck Title"
         />
         <TouchableHighlight
-          style={styles.btn} underlayColor='#d4271b'
+          style={styles.btn} underlayColor={metal}
           onPress={this.saveDeck.bind(this)}>
             <Text style={styles.btnText}>Submit</Text>
         </TouchableHighlight>
