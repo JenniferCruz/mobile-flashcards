@@ -4,6 +4,7 @@ import { NavigationActions } from 'react-navigation'
 import { getRandomOrder } from '../utils/helpers'
 import FlashCard from './FlashCard'
 import { orange, white, metal, rose, middleBlueGreen } from '../utils/colors'
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications'
 
 class Quiz extends Component {
 
@@ -21,6 +22,7 @@ class Quiz extends Component {
       this.setState(state => ({...state, current: state.current + 1}));
     else {
       this.setState(state => ({...state, isCompleted: true}));
+      clearLocalNotification().then(setLocalNotification)
     }
   }
 

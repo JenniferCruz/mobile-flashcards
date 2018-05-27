@@ -14,6 +14,7 @@ import { metal, blueGreen, rose, white, darkGreen } from './utils/colors'
 import storage from './utils/storage'
 import * as ACTIONS from './actions/index'
 import DummyData from './utils/defaultData'
+import { setLocalNotification } from './utils/notifications'
 
 const store = createStore(reducer, compose(
   applyMiddleware(storage)
@@ -26,11 +27,24 @@ const Tabs = createMaterialTopTabNavigator({
   New: {
     screen: NewDeck
   },
+}, {
+  tabBarOptions: {
+  style: {
+    backgroundColor: blueGreen,
+  }},
 });
 
 const Navigator = createStackNavigator({
   Home: {
     screen: Tabs,
+    navigationOptions: {
+      headerTintColor: metal,
+      headerStyle: {
+        backgroundColor: blueGreen,
+        height: 0,
+      }
+    }
+
   },
   DeckDetails: {
     screen: Deck,
@@ -78,6 +92,10 @@ AsyncStorage.getItem('mobile-flashcards').then(data => {
 
 export default class App extends React.Component {
 
+  componentDidMount() {
+    setLocalNotification()
+  }
+  
   render() {
     return (
       <Provider store={store}>
