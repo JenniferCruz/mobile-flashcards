@@ -61,6 +61,20 @@ class Quiz extends Component {
     const questions = this.props.navigation.state.params.deck.questions;
     let { current, isCompleted } = this.state;
 
+    if (questions.length === 0)
+      return (
+        <View style={{flex: 1, alignItems:'center'}}>
+          <Text style={styles.score}>
+            {"You don't have any cards yet!"}
+          </Text>
+          <TouchableHighlight
+            style={[styles.btn, styles.roseBackgr]} underlayColor='#FFC300'
+            onPress={this.goBack.bind(this)}>
+              <Text style={styles.btnText}>Back to deck</Text>
+          </TouchableHighlight>
+        </View>
+      )
+
     return isCompleted ? (
       <View style={{flex: 1, justifyContent: 'space-between'}}>
         <View>
