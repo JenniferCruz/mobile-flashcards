@@ -1,18 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
-import { createStore, applyMiddleware, compose } from 'redux'
+import { Text, View, StatusBar, AsyncStorage } from 'react-native';
 import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { TabNavigator, StackNavigator } from 'react-navigation';
+import { Constants } from 'expo'
 import DeckList from './components/DeckList'
 import Deck from './components/Deck'
 import Quiz from './components/Quiz'
 import NewDeck from './components/NewDeck'
 import NewCard from './components/NewCard'
 import reducer from './reducers'
-import { purple, green, blue, white } from './utils/colors'
-import { Constants } from 'expo'
+import { metal, blueGreen, rose, white, darkGreen } from './utils/colors'
 import storage from './utils/storage'
-import { AsyncStorage } from 'react-native';
 import * as ACTIONS from './actions/index'
 import DummyData from './utils/defaultData'
 
@@ -36,27 +35,27 @@ const Navigator = StackNavigator({
   DeckDetails: {
     screen: Deck,
     navigationOptions: {
-      headerTintColor: white,
+      headerTintColor: metal,
       headerStyle: {
-        backgroundColor: purple,
+        backgroundColor: blueGreen,
       }
     }
   },
   AddCard: {
     screen: NewCard,
     navigationOptions: {
-      headerTintColor: white,
+      headerTintColor: metal,
       headerStyle: {
-        backgroundColor: green,
+        backgroundColor: blueGreen,
       }
     }
   },
   TakeQuiz: {
     screen: Quiz,
     navigationOptions: {
-      headerTintColor: white,
+      headerTintColor: metal,
       headerStyle: {
-        backgroundColor: blue,
+        backgroundColor: blueGreen,
       }
     }
   }
@@ -64,7 +63,7 @@ const Navigator = StackNavigator({
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
-    <View style={{ backgroundColor, height: Constants.statusBarHeight*4 }}>
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
       <StatusBar translucent backgroundColor={backgroundColor} {...props} />
     </View>
   )
@@ -83,19 +82,10 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>
-          <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
+          <UdaciStatusBar backgroundColor={metal} barStyle="light-content" />
           <Navigator />
         </View>
       </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

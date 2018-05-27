@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableHighlight } from 'react-native'
+import { Text, View, TouchableHighlight, StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { getRandomOrder } from '../utils/helpers'
 import FlashCard from './FlashCard'
+import { orange, white, metal, rose, middleBlueGreen } from '../utils/colors'
 
 class Quiz extends Component {
 
@@ -59,32 +60,80 @@ class Quiz extends Component {
     let { current, isCompleted } = this.state;
 
     return isCompleted ? (
-      <View>
-        <Text>
-          {`Score: ${this.state.rightAnswers}/${this.state.max}`}
-        </Text>
-        <TouchableHighlight onPress={this.restart.bind(this)} underlayColor='#FFC300'>
-          <Text>Restart quiz</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.goBack.bind(this)} underlayColor='#FFC300'>
-          <Text>Back to deck</Text>
-        </TouchableHighlight>
+      <View style={{flex: 1, justifyContent: 'space-between'}}>
+        <View>
+          <Text style={styles.score}>
+            Score
+          </Text>
+          <Text style={[styles.score, {fontSize: 50, paddingTop: 0}]}>
+            {`${this.state.rightAnswers}/${this.state.max}`}
+          </Text>
+        </View>
+        <View style={{paddingBottom: 100, alignSelf: 'center'}}>
+          <TouchableHighlight
+            style={[styles.btn, styles.bluegreenBackgr]} underlayColor='#FFC300'
+            onPress={this.restart.bind(this)}>
+              <Text style={styles.btnText}>Restart quiz</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={[styles.btn, styles.roseBackgr]} underlayColor='#FFC300'
+            onPress={this.goBack.bind(this)}>
+              <Text style={styles.btnText}>Back to deck</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     ) : (
-      <View>
-        <Text>
+      <View style={{flex: 1, justifyContent: 'space-between'}}>
+        <Text style={styles.counter}>
           {`${this.state.current + 1}/${this.state.max}`}
         </Text>
-        <FlashCard quiz={questions[current]}/>
-        <TouchableHighlight onPress={() => this.saveAnswer(true)} underlayColor='#FFC300'>
-          <Text>Correct</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => this.saveAnswer(false)} underlayColor='#FFC300'>
-          <Text>Incorrect</Text>
-        </TouchableHighlight>
+        <FlashCard quiz={questions[current]} />
+        <View style={{paddingBottom: 100, alignSelf: 'center'}}>
+          <TouchableHighlight
+            style={[styles.btn, styles.bluegreenBackgr]} underlayColor='#FFC300'
+            onPress={() => this.saveAnswer(true)}>
+              <Text style={styles.btnText}>Correct</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={[styles.btn, styles.roseBackgr]} underlayColor='#FFC300'
+            onPress={() => this.saveAnswer(false)}>
+              <Text style={styles.btnText}>Incorrect</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  counter: {
+    fontSize: 25,
+    color: metal,
+    padding: 20
+  },
+  score: {
+    textAlign: 'center',
+    fontSize: 25,
+    color: metal,
+    paddingTop: 50
+  },
+  btnText: {
+    textAlign: 'center',
+    color: white,
+    fontSize: 15,
+  },
+  btn: {
+    margin: 5,
+    padding: 10,
+    borderRadius: 2,
+    width: 150,
+  },
+  roseBackgr: {
+    backgroundColor: rose
+  },
+  bluegreenBackgr: {
+    backgroundColor: middleBlueGreen
+  }
+})
 
 export default Quiz;

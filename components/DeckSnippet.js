@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 import { getCardsNumberText } from '../utils/helpers'
+import { blueGreen, gray, metal } from '../utils/colors'
 
 class DeckSnippet extends Component {
 
@@ -9,24 +10,38 @@ class DeckSnippet extends Component {
     const length = deck.questions.length;
 
     return (
-      <TouchableOpacity onPress={() => {
-        // debugger;
-        return navigate('DeckDetails', { deck });
-      }}>
-        <View>
-          <Text>
+      <TouchableOpacity onPress={() => navigate('DeckDetails', { deck })}>
+        <View style={styles.container}>
+          <Text style={styles.title}>
             {deck.title}
           </Text>
-          <Text>
+          <Text style={styles.cardsCount}>
             {getCardsNumberText(deck.questions)}
-          </Text>
-          <Text>
-            _____________________________________
           </Text>
         </View>
       </TouchableOpacity>
     )
   }
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    borderBottomWidth: 1,
+    borderBottomColor: metal,
+    paddingTop: 20,
+    paddingBottom: 20
+  },
+  title: {
+    fontSize: 30,
+    color: blueGreen,
+    textAlign: 'center'
+  },
+  cardsCount: {
+    fontSize: 15,
+    textAlign: 'center',
+    color: gray
+  },
+})
 
 export default DeckSnippet;

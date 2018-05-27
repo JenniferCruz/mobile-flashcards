@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, TextInput, TouchableHighlight } from 'react-native'
+import { View, Text, TextInput, TouchableHighlight, StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import * as ACTIONS from '../actions'
+import { orange, white, metal, rose } from '../utils/colors'
 
 class NewCard extends Component {
   state = {
@@ -25,26 +26,48 @@ class NewCard extends Component {
   render() {
 
     return (
-      <View>
-        <Text>Add card</Text>
+      <View style={{padding: 40}}>
+        <Text style={styles.title}>Add card</Text>
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
           onChangeText={text => this.setState({question: text})}
           value={this.state.question}
           placeholder="Question"
         />
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          style={{paddingTop: 20}}
           onChangeText={text => this.setState({answer: text})}
           value={this.state.answer}
           placeholder="Answer"
         />
-        <TouchableHighlight onPress={this.saveCard.bind(this)} underlayColor='#d4271b'>
-          <Text>Submit</Text>
+        <TouchableHighlight
+          style={styles.btn}
+          underlayColor={orange}
+          onPress={this.saveCard.bind(this)}>
+          <Text style={styles.btnText}>Submit</Text>
         </TouchableHighlight>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  title: {
+    paddingBottom: 15,
+    fontSize: 35,
+    color: metal
+  },
+  btn: {
+    margin: 5,
+    backgroundColor: rose,
+    padding: 10,
+    borderRadius: 2,
+    width: 150
+  },
+  btnText: {
+    fontSize: 15,
+    color: white,
+    textAlign: 'center',
+  }
+})
 
 export default connect()(NewCard)
